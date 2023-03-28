@@ -14,7 +14,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        
+
         # 设置输入输出的全部 QLineEdit 默认为不可用状态
         self.roundTubeDiameter_inPut_lineEdit.setEnabled(False)
         self.squareTubeLength_inPut_lineEdit.setEnabled(False)
@@ -30,7 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.bimodalResistance_h2o_outPut_lineEdit.setEnabled(False)
         self.totalRistance_pa_outPut_lineEdit.setEnabled(False)
         self.totalRistance_h2o_outPut_lineEdit.setEnabled(False)
-        
+
         # 设置输出区的 QLineEdit 为只读
         self.flowRate_outPut_lineEdit.setReadOnly(True)
         self.airVolume_outPut_lineEdit.setReadOnly(True)
@@ -41,35 +41,45 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.bimodalResistance_h2o_outPut_lineEdit.setReadOnly(True)
         self.totalRistance_pa_outPut_lineEdit.setReadOnly(True)
         self.totalRistance_h2o_outPut_lineEdit.setReadOnly(True)
-        
+
         # 设置选择圆形管的 QRadioBottom 时，输入直径和风量的 QLineEdit 可用，使用自定义槽函数roundchoose()
-        self.connect_roundchoose = self.roundTube_radioButton.toggled.connect(self.roundchoose)
-        
+        self.connect_roundchoose = self.roundTube_radioButton.toggled.connect(
+            self.roundchoose
+        )
+
         # 设置选择矩形管的 QRadioBottom 时，输入长宽和风量的 QLineEdit 可用，使用自定义槽函数squarechoose()
-        self.connect_squarechoose = self.squareTube_radioButton.toggled.connect(self.squarechoose)
-        
+        self.connect_squarechoose = self.squareTube_radioButton.toggled.connect(
+            self.squarechoose
+        )
+
         # 设置选择管段长度的 QCheckBox 时，输入管段长度的 QLineEdit 可用
-        self.pipeLength_checkBox.toggled.connect(self.pipeLength_inPut_lineEdit.setEnabled)
-        
+        self.pipeLength_checkBox.toggled.connect(
+            self.pipeLength_inPut_lineEdit.setEnabled
+        )
+
         # 设置清除键功能，使用自定义的槽函数clearlineedit()
-        self.connect_resultremove = self.resultClear_pushButton.clicked.connect(self.clearlineedit)
-        
+        self.connect_resultremove = self.resultClear_pushButton.clicked.connect(
+            self.clearlineedit
+        )
+
         # 设置计算键功能,，使用自定义的槽函数choosecalc()
-        self.connect1_calculate = self.calculate_pushButton.clicked.connect(self.choosecalc)
-        
+        self.connect1_calculate = self.calculate_pushButton.clicked.connect(
+            self.choosecalc
+        )
+
         # 设置退出键功能
         self.exec_pushButton.clicked.connect(self.close)
-        
+
         # 设置帮助键功能
         connect_help = self.help_pushButton.clicked.connect(self.showhelp)
-        
+
         # 设置关于键功能
         connect_about = self.about_pushButton.clicked.connect(self.showabout)
-    
+
+
     # 计算键接收函数，实现计算功能
-    # TODO
     def choosecalc(self):
-        # print("choosecalc函数调用")
+        print("choosecalc函数调用")
         # 圆形管阻力计算
         if self.roundTube_radioButton.isChecked():
             # 圆形管有长度
@@ -101,8 +111,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.flowRate_outPut_lineEdit.setText(str(airflowrate))
                 self.airVolume_outPut_lineEdit.setText(str(airvolume))
                 self.roundTubeDiameter_outPut_lineEdit.setText(str(diameter))
-                self.bimodalResistance_pa_outPut_lineEdit.setText(str(bimodalresistancepa))
-                self.bimodalResistance_h2o_outPut_lineEdit.setText(str(bimodalresistanceh2o))
+                self.bimodalResistance_pa_outPut_lineEdit.setText(
+                    str(bimodalresistancepa)
+                )
+                self.bimodalResistance_h2o_outPut_lineEdit.setText(
+                    str(bimodalresistanceh2o)
+                )
                 self.totalRistance_pa_outPut_lineEdit.setText(str(totalristancepa))
                 self.totalRistance_h2o_outPut_lineEdit.setText(str(totalristanceh2o))
             # 圆形管无长度
@@ -129,8 +143,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.flowRate_outPut_lineEdit.setText(str(airflowrate))
                 self.airVolume_outPut_lineEdit.setText(str(airvolume))
                 self.roundTubeDiameter_outPut_lineEdit.setText(str(diameter))
-                self.bimodalResistance_pa_outPut_lineEdit.setText(str(bimodalresistancepa))
-                self.bimodalResistance_h2o_outPut_lineEdit.setText(str(bimodalresistanceh2o))
+                self.bimodalResistance_pa_outPut_lineEdit.setText(
+                    str(bimodalresistancepa)
+                )
+                self.bimodalResistance_h2o_outPut_lineEdit.setText(
+                    str(bimodalresistanceh2o)
+                )
         # 方形管阻力计算
         else:
             # 方形管有长度
@@ -168,8 +186,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.airVolume_outPut_lineEdit.setText(str(airvolume))
                 self.squareTubeLength_outPut_lineEdit.setText(str(lengthc))
                 self.squareTubeWidth_outPut_lineEdit.setText(str(widthc))
-                self.bimodalResistance_pa_outPut_lineEdit.setText(str(bimodalresistancepa))
-                self.bimodalResistance_h2o_outPut_lineEdit.setText(str(bimodalresistanceh2o))
+                self.bimodalResistance_pa_outPut_lineEdit.setText(
+                    str(bimodalresistancepa)
+                )
+                self.bimodalResistance_h2o_outPut_lineEdit.setText(
+                    str(bimodalresistanceh2o)
+                )
                 self.totalRistance_pa_outPut_lineEdit.setText(str(totalristancepa))
                 self.totalRistance_h2o_outPut_lineEdit.setText(str(totalristanceh2o))
             # 方形管无长度
@@ -203,9 +225,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.airVolume_outPut_lineEdit.setText(str(airvolume))
                 self.squareTubeLength_outPut_lineEdit.setText(str(lengthc))
                 self.squareTubeWidth_outPut_lineEdit.setText(str(widthc))
-                self.bimodalResistance_pa_outPut_lineEdit.setText(str(bimodalresistancepa))
-                self.bimodalResistance_h2o_outPut_lineEdit.setText(str(bimodalresistanceh2o))
-    
+                self.bimodalResistance_pa_outPut_lineEdit.setText(
+                    str(bimodalresistancepa)
+                )
+                self.bimodalResistance_h2o_outPut_lineEdit.setText(
+                    str(bimodalresistanceh2o)
+                )
+
     # 清除键信号槽接收函数，实现清除功能
     def clearlineedit(self):
         # 清除输入输出数据
@@ -233,7 +259,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.bimodalResistance_h2o_outPut_lineEdit.setEnabled(False)
         self.totalRistance_pa_outPut_lineEdit.setEnabled(False)
         self.totalRistance_h2o_outPut_lineEdit.setEnabled(False)
-    
+
     # 选择圆形管接收函数，实现圆形管选项可用
     def roundchoose(self):
         self.roundTubeDiameter_inPut_lineEdit.setEnabled(True)
@@ -241,7 +267,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 设置互斥的选项不可用
         self.squareTubeLength_inPut_lineEdit.setEnabled(False)
         self.squareTubeWidth_inPut_lineEdit.setEnabled(False)
-    
+
     # 选择方形管接收函数，实现方形管选项可用
     def squarechoose(self):
         self.squareTubeLength_inPut_lineEdit.setEnabled(True)
@@ -249,12 +275,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.airVolume_inPut_lineEdit.setEnabled(True)
         # 设置互斥的选项不可用
         self.roundTubeDiameter_inPut_lineEdit.setEnabled(False)
-    
+
     # 展示help对话框
     def showhelp(self):
         self.w = HelpWindow()
         self.w.show()
-    
+
     # 展示about对话框
     def showabout(self):
         self.w = AboutWindow()
